@@ -1,8 +1,8 @@
 {
   "name": "olafnorge/secrets-provider",
-  "description": "Simple service provider to load a value from a mounted secret or, if not found, from an ENV var.",
+  "description": "Simple helper to load a value from a mounted secret or, if not found, from an ENV var.",
   "keywords": [
-    "k8s",
+    "container",
     "env",
     "secret",
     "configuration"
@@ -22,22 +22,9 @@
     "illuminate/support": ">=5.0"
   },
   "autoload": {
-    "psr-4": {
-      "olafnorge\\Secrets\\": "src/"
-    },
     "files": [
       "src/helpers.php"
     ]
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "olafnorge\\Secrets\\SecretsServiceProvider"
-      ],
-      "aliases": {
-        "Secrets": "olafnorge\\Secrets\\Facade"
-      }
-    }
   },
   "config": {
     "optimize-autoloader": true,

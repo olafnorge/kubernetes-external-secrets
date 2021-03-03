@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 if (!function_exists('secret')) {
     /**
      * Read value from named secret
@@ -9,6 +11,16 @@ if (!function_exists('secret')) {
      * @return mixed
      */
     function secret($name, $default = null) {
-        return \olafnorge\Secrets\Facades\Secrets::get($name, $default);
+        $path = sprintf('%s/%s', env('SECRETS_BASE_PATH', '/run/secrets'), trim($name));
+
+        if (is_file($path) && is_readable($path)) {
+            $content = trim(file_get_contents($path));
+
+            return Str::startsWith($content, 'base64:')
+                ? base64_decode(substr($content, 7))
+                : $content;
+        }
+
+        return env($name, $default);
     }
 }
