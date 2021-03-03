@@ -1,0 +1,47 @@
+{
+  "name": "olafnorge/secrets-provider",
+  "description": "Simple service provider to load a value from a mounted secret or, if not found, from an ENV var.",
+  "keywords": [
+    "k8s",
+    "env",
+    "secret",
+    "configuration"
+  ],
+  "type": "library",
+  "homepage": "https://github.com/olafnorge/secrets-provider",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Volker Machon",
+      "email": "olafnorge@users.noreply.github.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "illuminate/support": ">=5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "olafnorge\\Secrets\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "olafnorge\\Secrets\\SecretsServiceProvider"
+      ],
+      "aliases": {
+        "Secrets": "olafnorge\\Secrets\\Facade"
+      }
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
+}
