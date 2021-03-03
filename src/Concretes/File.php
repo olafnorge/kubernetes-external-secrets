@@ -1,6 +1,6 @@
 <?php
 
-namespace olafnorge\Secrets\Drivers;
+namespace olafnorge\Secrets\Concretes;
 
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Config;
@@ -15,7 +15,7 @@ class File implements Secrets {
      * @param $default
      * @return mixed
      */
-    public function get($name, $default) {
+    public function get($name, $default = null) {
         $path = sprintf('%s/%s', Config::get('secrets.base_path', '/run/secrets'), trim($name));
 
         if (is_file($path) && is_readable($path)) {

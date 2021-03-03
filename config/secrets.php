@@ -2,5 +2,5 @@
 
 return [
     'base_path' => env('SECRETS_BASE_PATH', '/run/secrets'),
-    'driver' => \olafnorge\Secrets\Drivers\File::class,
+    'concrete' => \olafnorge\Secrets\Concretes\File::class,
 ];

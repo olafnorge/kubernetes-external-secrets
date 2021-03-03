@@ -3,7 +3,7 @@
 namespace olafnorge\Secrets;
 
 use Illuminate\Support\ServiceProvider;
-use olafnorge\Secrets\Facades\Secrets;
+use olafnorge\Secrets\Contracts\Secrets;
 
 class SecretsServiceProvider extends ServiceProvider {
 
@@ -31,8 +31,9 @@ class SecretsServiceProvider extends ServiceProvider {
      */
     public function register() {
         $this->app->singleton(Secrets::class, function () {
-            $class = config('secrets.driver');
-            return new $class;
+            return with(config('secrets.concrete'), function ($class) {
+                return new $class;
+            });
         });
     }
 }

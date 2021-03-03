@@ -8,7 +8,7 @@ if (!function_exists('secret')) {
      * @param string $default
      * @return mixed
      */
-    function secret($name, $default) {
+    function secret($name, $default = null) {
         return \olafnorge\Secrets\Facades\Secrets::get($name, $default);
     }
 }
